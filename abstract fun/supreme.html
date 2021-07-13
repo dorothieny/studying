@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style media="screen">
+    body{
+    background-color:#D8C09E;
+    height: 3000px;
+  }
+  .circle{
+    display:block;
+    position:fixed;
+    width:40vw;
+    height:40vw;
+    border-radius: 50%;
+    background-color: red;
+    left: 30vw;
+  top:10vh}
+    .square{
+      display:block;
+      position: fixed;
+      height: 23vw;
+      width:23vw;
+      background-color: black;
+      left:38vw;
+      top:20vh;
+      transform: rotate(0deg);
+      z-index:3;
+      cursor: pointer;
+    }
+    .rectangle{
+      height: 6vw;
+      width: 70vw;
+      transform: rotate(-45deg);
+      position:fixed;
+      left:10vw;
+    }
+    .black{
+      margin-top: 40vh;
+      background-color: black;
+    }
+    .grey{
+margin-top: 55vh;
+        background-color: #E1E1E1;
+        animation:ride 3s alternate infinite;
+    }
+    .bigcircle{
+      position: fixed;
+      width:55vw;
+      height: 55vw;
+      border-radius: 50%;
+      top:-15vh;
+      left:18vw;
+      background-color: transparent;
+      border: dashed 60px #AF0000;
+      border-bottom-color: white;
+      border-bottom-style: solid;
+      border-right: dashed 60px #E6520B;
+      z-index: 1;
+      transform: rotate(0deg);
+    }
+    .quater{
+      position: fixed;
+      width:33vw;
+      height: 33vw;
+      border-radius: 50%;
+      top:16vh;
+      left:33vw;
+      transform: rotate(-40deg);
+      border-bottom-left-radius: 50%;
+      border-bottom-right-radius: 50%;
+      background-color: transparent;
+      border:solid 70px transparent;
+      border-bottom:solid 70px  black;
+      z-index: 2;
+      cursor: pointer;
+    }
+    .triangle {
+   width: 0;
+   height: 0;
+   border-left: 100px solid transparent;
+   border-right: 100px solid transparent;
+   border-top: 200px solid #E1E1E1;
+   transform: rotate(-50deg);
+   position:fixed;
+   left:20vw;
+   z-index: 3;
+   cursor: pointer;
+ }
+ .text{
+   font-size: 80px;
+   font-family: Pragmatica;
+   color:white;
+   text-align: center;
+ }
+ .place{
+   position: fixed;
+   width: 100%;
+   height:120px;
+   margin-top: 20vw;
+   z-index: 4
+ }
+ .animated{
+   animation: anime 4s ease-in-out infinite;
+
+ }
+ @keyframes anime {
+   from{ transform: rotate(0deg);}
+   to{ transform: rotate(-180deg);}
+ }
+ @keyframes ride {
+   from{transform: rotate(-45deg);
+   }
+   to{transform: rotate(100deg);}
+
+ }
+   @font-face{
+   font-family: 'Pragmatica';
+   src: url('Pragmatica.ttf');
+   font-weight: normal;
+   font-style: normal;
+   }
+ }
+    </style>
+    <script type="text/javascript">
+
+
+
+
+    $(document).ready(function(){
+      let appear = $('<div class="text">Вадим, привет :,)</div>')
+
+      $(".triangle").on('click', function(){
+        $(".place").append(appear);
+      });
+      $(".quater").on('click', function(){
+        $(appear).remove();
+      });
+      $(".square").on('click', function(){
+        $(this).toggleClass("animated");
+      });
+
+      let x;
+      let rotation = 0;
+
+      $(window).on('scroll', function() {
+        x = $(window).scrollTop();
+        y = $(document).height()
+        $(".circle").css('width', 40 + parseInt(x / 5) + 'vw');
+        $(".circle").css('left', 30 - parseInt(x / 10) + 'vw');
+        $(".bigcircle").css('transform', 'rotate('+ rotation +'deg)')
+        rotation += 1;
+        rotation %= 360;;
+      });
+    })
+
+    </script>
+  </head>
+  <body>
+    <div class="quater red"></div>
+    <div class="bigcircle"></div>
+    <div class="rectangle black"></div>
+    <div class="rectangle grey"></div>
+
+    <div class="circle"></div>
+    <div class="square"></div>
+
+
+
+    <div class="triangle"></div>
+    <div class="place"></div>
+
+  </body>
+</html>
